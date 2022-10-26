@@ -3,7 +3,6 @@ package com.rent.carrent.controller;
 import com.rent.carrent.dto.car.CarCreateRequestDto;
 import com.rent.carrent.dto.car.CarDto;
 import com.rent.carrent.dto.error.ErrorDto;
-import com.rent.carrent.dto.user.UserDto;
 import com.rent.carrent.service.car.CarService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -12,7 +11,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -90,5 +92,27 @@ public class CarController {
     public CarDto updateCar(@PathVariable String id,
                             @RequestBody @Valid CarCreateRequestDto car) {
         return carService.updateCar(id, car);
+    }
+
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Delete car")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204",
+                    content = {
+                            @Content(
+                                    mediaType = "application/json",
+                                    array = @ArraySchema(schema = @Schema(implementation = Void.class)))
+                    }),
+            @ApiResponse(responseCode = "404", description = "Not found exception",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ErrorDto.class))}),
+            @ApiResponse(responseCode = "500", description = "Unexpected exception",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ErrorDto.class))})
+    })
+    public ResponseEntity<?> deleteCar(@PathVariable String id) {
+        carService.deleteCar(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT)
+                .build();
     }
 }

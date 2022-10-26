@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -39,8 +38,7 @@ public class CarServiceImpl implements CarService {
     @Override
     @Transactional
     public CarDto updateCar(String id, CarCreateRequestDto carDto) {
-        Car car = repository.findById(id)
-                .orElseThrow(() -> new CarNotFoundException("Car with id %s doesn't exist", id));
+        Car car = getCarById(id);
         if (!car.getUniqueIdentifier().equals(carDto.getUniqueIdentifier())) {
             checkRegisterNumberAlreadyExists(carDto.getUniqueIdentifier());
         }
@@ -48,10 +46,22 @@ public class CarServiceImpl implements CarService {
         return mapper.toDto(car);
     }
 
+    @Override
+    @Transactional
+    public void deleteCar(String id) {
+        Car car = getCarById(id);
+        repository.delete(car);
+    }
+
     private void checkRegisterNumberAlreadyExists(String uniqueIdentifier) {
         boolean existsCarByUniqueIdentifier = repository.existsCarByUniqueIdentifier(uniqueIdentifier);
         if (existsCarByUniqueIdentifier) {
             throw new CarCreationRequestValidationException("Car's register number already exists in store");
         }
+    }
+
+    private Car getCarById(String id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new CarNotFoundException("Car with id %s doesn't exist", id));
     }
 }
