@@ -10,4 +10,6 @@ public interface CarService {
     List<CarDto> getCarList();
 
     CarDto addCar(CarCreateRequestDto carDto);
+
+    CarDto updateCar(String id, CarCreateRequestDto carDto);
 }

@@ -36,6 +36,16 @@ public class RestResponseEntityExceptionHandler  {
                 .body(errorDto);
     }
 
+    @ExceptionHandler(CarNotFoundException.class)
+    public ResponseEntity<ErrorDto> handleCarNotFoundException(CarNotFoundException ex) {
+        ErrorDto errorDto = new ErrorDto();
+        String message = ex.getMessage();
+        Object[] params = ex.getParams();
+        errorDto.setErrorMessage(String.format(message, params));
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(errorDto);
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorDto> handleException(Exception ex) {
         log.error("Exception!", ex);
