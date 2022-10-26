@@ -28,16 +28,24 @@ public class RestResponseEntityExceptionHandler  {
                 .body(errorDto);
     }
 
-    @ExceptionHandler(CarCreationRequestValidationException.class)
-    public ResponseEntity<ErrorDto> handleCarValidationException(CarCreationRequestValidationException ex) {
+    @ExceptionHandler({CarCreationRequestValidationException.class, CarReservationException.class})
+    public ResponseEntity<ErrorDto> handleValidationException(RuntimeException ex) {
         ErrorDto errorDto = new ErrorDto();
         errorDto.setErrorMessage(ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(errorDto);
     }
+//
+//    @ExceptionHandler(CarReservationException.class)
+//    public ResponseEntity<ErrorDto> handleCarReservationException(CarReservationException ex) {
+//        ErrorDto errorDto = new ErrorDto();
+//        errorDto.setErrorMessage(ex.getMessage());
+//        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+//                .body(errorDto);
+//    }
 
-    @ExceptionHandler(CarNotFoundException.class)
-    public ResponseEntity<ErrorDto> handleCarNotFoundException(CarNotFoundException ex) {
+    @ExceptionHandler({CarNotFoundException.class, UserNotFoundException.class, NoAvailableCarForReservationException.class})
+    public ResponseEntity<ErrorDto> handleNotFoundException(NotFoundException ex) {
         ErrorDto errorDto = new ErrorDto();
         String message = ex.getMessage();
         Object[] params = ex.getParams();
