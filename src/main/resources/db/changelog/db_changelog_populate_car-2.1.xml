@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+      http://www.liquibase.org/xml/ns/pro
+      http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+    <changeSet id="1" author="Aleksei Stepanov">
+        <insert tableName="car">
+            <column name="id" value="e2cf9859-3838-4df5-92d4-27fe90d97925"/>
+            <column name="make" value="Toyota"/>
+            <column name="model" value="Prius"/>
+            <column name="unique_identifier" value="C001"/>
+        </insert>
+        <insert tableName="car">
+            <column name="id" value="c9f06095-648e-4a51-b9f8-8a8c2665bc9e"/>
+            <column name="make" value="Toyota"/>
+            <column name="model" value="Corona"/>
+            <column name="unique_identifier" value="C002"/>
+        </insert>
+        <insert tableName="car">
+            <column name="id" value="1f382d56-86ae-4808-9015-8c5b49dc3cfc"/>
+            <column name="make" value="Audi"/>
+            <column name="model" value="A3"/>
+            <column name="unique_identifier" value="C003"/>
+        </insert>
+        <insert tableName="car">
+            <column name="id" value="108d62c0-0c61-4a66-8c30-c704acff7445"/>
+            <column name="make" value="Audi"/>
+            <column name="model" value="A4"/>
+            <column name="unique_identifier" value="C004"/>
+        </insert>
+        <insert tableName="car">
+            <column name="id" value="d5948ca7-1627-4842-a3a6-61691d0055a0"/>
+            <column name="make" value="Volkswagen"/>
+            <column name="model" value="Atlas"/>
+            <column name="unique_identifier" value="C005"/>
+        </insert>
+        <insert tableName="car">
+            <column name="id" value="0e13ecb8-ea5a-494c-bffd-db7d1eab45b5"/>
+            <column name="make" value="Volkswagen"/>
+            <column name="model" value="Atlas Cross Sport"/>
+            <column name="unique_identifier" value="C006"/>
+        </insert>
+        <insert tableName="car">
+            <column name="id" value="3919e478-ee9a-4b13-b761-18c83e6202ef"/>
+            <column name="make" value="Ford"/>
+            <column name="model" value="Bronco"/>
+            <column name="unique_identifier" value="C007"/>
+        </insert>
+        <insert tableName="car">
+            <column name="id" value="f58238fc-a734-4e17-ac96-94e682adb964"/>
+            <column name="make" value="Subaru"/>
+            <column name="model" value="BRZ"/>
+            <column name="unique_identifier" value="C008"/>
+        </insert>
+        <insert tableName="car">
+            <column name="id" value="b4d49cd5-ec9a-44fb-a747-7e8ac9270650"/>
+            <column name="make" value="Kia"/>
+            <column name="model" value="Carnival"/>
+            <column name="unique_identifier" value="C009"/>
+        </insert>
+        <insert tableName="car">
+            <column name="id" value="460ec1e2-a1be-4d2d-b655-d235bbe6c75a"/>
+            <column name="make" value="Porsche"/>
+            <column name="model" value="Cayenne"/>
+            <column name="unique_identifier" value="C010"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

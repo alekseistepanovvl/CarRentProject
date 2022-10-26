@@ -8,7 +8,7 @@
       http://www.liquibase.org/xml/ns/pro
       http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
     <changeSet id="1" author="Aleksei Stepanov">
-        <createTable tableName="car">
+        <createTable tableName="user">
             <column name="id" type="varchar(36)">
                 <constraints primaryKey="true" primaryKeyName="user_id_pk" />
             </column>

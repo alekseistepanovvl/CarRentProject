@@ -20,10 +20,18 @@ public class RestResponseEntityExceptionHandler  {
         ex.getBindingResult().getAllErrors().forEach((error) -> {
             String fieldName = ((FieldError) error).getField();
             String errorMessage = error.getDefaultMessage();
-            builder.append(fieldName).append(":").append(errorMessage);
+            builder.append(fieldName).append(":").append(errorMessage).append("\n");
         });
         ErrorDto errorDto = new ErrorDto();
         errorDto.setErrorMessage(builder.toString());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(errorDto);
+    }
+
+    @ExceptionHandler(CarCreationRequestValidationException.class)
+    public ResponseEntity<ErrorDto> handleCarValidationException(CarCreationRequestValidationException ex) {
+        ErrorDto errorDto = new ErrorDto();
+        errorDto.setErrorMessage(ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(errorDto);
     }
