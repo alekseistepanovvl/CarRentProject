@@ -51,6 +51,9 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public UserReservationList getUpcomingReservationList(String userId) {
         User upcomingReservationList = userRepository.getUpcomingReservationList(userId);
+        if (upcomingReservationList == null) {
+            throw new UserNotFoundException("User with %s not found", userId);
+        }
         return userReservationListMapper.toDtoList(upcomingReservationList.getReservationList(), upcomingReservationList);
     }
 
