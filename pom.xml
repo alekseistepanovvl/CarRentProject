@@ -21,7 +21,7 @@
         <hikari.version>5.0.1</hikari.version>
         <mapstruct.version>1.5.3.Final</mapstruct.version>
         <jakarta.validation.version>2.0.2</jakarta.validation.version>
-        <spock.version>2.2-M1-groovy-4.0</spock.version>
+        <spock.version>2.2-groovy-4.0</spock.version>
     </properties>
     <dependencies>
         <dependency>
@@ -122,6 +122,14 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.10.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <id>compile</id>
+                    </execution>
+                </executions>
                 <configuration>
                     <forceJavacCompilerUse>true</forceJavacCompilerUse>
                     <encoding>${file.encoding}</encoding>
@@ -147,10 +155,11 @@
             <plugin>
                 <groupId>org.codehaus.gmavenplus</groupId>
                 <artifactId>gmavenplus-plugin</artifactId>
-                <version>1.9.0</version>
+                <version>3.0.2</version>
                 <executions>
                     <execution>
                         <goals>
+                            <goal>compile</goal>
                             <goal>compileTests</goal>
                         </goals>
                     </execution>
@@ -158,7 +167,7 @@
                 <configuration>
                     <sources>
                         <source>
-                            <directory>${project.basedir}/src/main/java/groovy</directory>
+                            <directory>${project.basedir}/src/main/test/groovy</directory>
                             <includes>
                                 <include>**/*.groovy</include>
                             </includes>
@@ -177,14 +186,17 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
+                <version>3.2.5</version>
                 <configuration>
                     <testSourceDirectory>src/test/groovy</testSourceDirectory>
                     <testSourceDirectory>src/test/java</testSourceDirectory>
-                    <includes>
-                        <include>**/*Spec.java</include>
-                        <include>**/*Test.java</include>
-                    </includes>
+                    <argLine>
+                        --add-opens=CarRentProject/com.rent.carrent.model=ALL-UNNAMED
+                        --add-opens=CarRentProject/com.rent.carrent.dto.car=ALL-UNNAMED
+                        --add-opens=CarRentProject/com.rent.carrent.dto.reservation=ALL-UNNAMED
+                        --add-opens=CarRentProject/com.rent.carrent.dto.user=ALL-UNNAMED
+                        --add-opens=CarRentProject/com.rent.carrent.dto.error=ALL-UNNAMED
+                    </argLine>
                 </configuration>
             </plugin>
             <plugin>
