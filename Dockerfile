@@ -7,6 +7,7 @@ RUN jar -xf ./application.jar
 
 FROM openjdk:11-jdk-slim
 ENV APP_HOME=/usr/app
+EXPOSE 8080
 WORKDIR $APP_HOME
 COPY --from=builder $APP_HOME/BOOT-INF/lib lib
 COPY --from=builder $APP_HOME/META-INF app/META-INF
