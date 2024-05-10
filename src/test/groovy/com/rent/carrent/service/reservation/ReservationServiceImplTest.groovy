@@ -13,6 +13,8 @@ import com.rent.carrent.model.User
 import com.rent.carrent.repository.CarRepository
 import com.rent.carrent.repository.ReservationRepository
 import com.rent.carrent.repository.UserRepository
+import com.rent.carrent.service.reservation.ReservationService
+import com.rent.carrent.service.reservation.ReservationServiceImpl
 import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.Pageable
 import spock.lang.Specification

@@ -4,6 +4,8 @@ import com.rent.carrent.dto.user.UserDto
 import com.rent.carrent.mapper.UserMapper
 import com.rent.carrent.model.User
 import com.rent.carrent.repository.UserRepository
+import com.rent.carrent.service.user.UserService
+import com.rent.carrent.service.user.UserServiceImpl
 import spock.lang.Specification
 import spock.lang.Subject
 
