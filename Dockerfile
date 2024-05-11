@@ -4,7 +4,7 @@ COPY pom.xml /usr/src/app
 
 RUN mvn -f /usr/src/app/pom.xml clean verify
 
-FROM openjdk:11-jdk-slim
+FROM mcr.microsoft.com/openjdk/jdk:11-distroless
 ENV APP_HOME=/usr/app
 EXPOSE 8080
 WORKDIR $APP_HOME
