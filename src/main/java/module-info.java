@@ -21,6 +21,15 @@ module com.rent.carrent {
     requires spring.core;
     requires org.hsqldb;
     requires spring.aop;
+    requires org.apache.tomcat.embed.core;
+    requires io.github.classgraph;
+
+    requires net.bytebuddy;
+    requires com.fasterxml.classmate;
+    requires jdk.unsupported;
+
+    requires java.xml.bind;
+    requires jakarta.activation;
 
     opens com.rent.carrent to spring.core, spring.beans, spring.context;
     opens com.rent.carrent.config to spring.core, spring.beans, spring.context, liquibase.core;
